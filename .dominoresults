@@ -1,0 +1,6 @@
+# This file lets you filter what files show up in your results view in Domino.
+# List the filenames here that you want to show up in the results view or leave
+# this file empty and let Domino show all of them!
+#
+# Find more information here:
+# http://support.dominodatalab.com/hc/en-us/articles/204792845-Results
