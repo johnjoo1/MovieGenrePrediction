@@ -1,7 +1,7 @@
 import pickle
 import numpy as np
 from sklearn.preprocessing import MultiLabelBinarizer
-from src.eval_metrics import *
+from src.utils.eval_metrics import *
 
 from sklearn.model_selection import train_test_split
 
