@@ -3,7 +3,7 @@ import pickle
 with open('models/count_vectorizer.pkl','rb') as f:
     count_vectorizer=pickle.load(f)
 with open('models/classifier_nb.pkl','rb') as f:
-    classif_svc=pickle.load(f)
+    classif_nb=pickle.load(f)
 with open('data/processed/Genredict.pkl','rb') as f:
     Genre_ID_to_name=pickle.load(f)
 
