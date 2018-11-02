@@ -26,4 +26,4 @@ def nb_predict(input_string):
         if score!=0:
             genre=Genre_ID_to_name[genre_list[i]]
             pred_genres.append(genre)
-    return pred_genres, pred_prob
+    return pred_genres #, pred_prob
