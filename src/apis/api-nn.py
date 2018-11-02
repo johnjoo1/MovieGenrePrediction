@@ -5,6 +5,9 @@ from gensim import models
 from nltk.tokenize import RegexpTokenizer
 from stop_words import get_stop_words
 import numpy as np
+import subprocess
+
+subprocess.call(['sh', 'src/models/get_word2vec.sh'])
 
 with open('data/processed/Genredict.pkl','rb') as f:
     Genre_ID_to_name=pickle.load(f)
