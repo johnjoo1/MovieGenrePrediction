@@ -20,10 +20,12 @@ def nb_predict(input_string):
     cleaned_string = remove_punctuation(input_string)
     vectorized_doc = count_vectorizer.transform([cleaned_string])
     pred_array = classif_nb.predict(vectorized_doc)
-    pred_prob = classif_nb.predict_proba(vectorized_doc)
+    pred_prob_all = classif_nb.predict_proba(vectorized_doc)
     pred_genres = []
+    pred_prob_return = []
     for i, score in enumerate(pred_array[0]):
         if score!=0:
             genre=Genre_ID_to_name[genre_list[i]]
             pred_genres.append(genre)
-    return [pred_genres , pred_prob]
+            pred_prob_return.append(pred_prob_all[0][i])
+    return [pred_genres, pred_prob_return]
