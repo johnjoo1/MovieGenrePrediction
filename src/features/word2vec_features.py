@@ -71,4 +71,4 @@ with open('data/processed/textual_features.pkl','wb') as f:
 with open('models/mlb.pkl','wb') as f:
     pickle.dump(mlb,f)
 
-    os.remove("data/external/GoogleNews-vectors-negative300.bin")
+os.remove("data/external/GoogleNews-vectors-negative300.bin")
