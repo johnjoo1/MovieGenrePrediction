@@ -25,6 +25,9 @@ RUN echo 'if [ -z ${PYTHONPATH+x} ]; then export PYTHONPATH=${DOMINO_WORKING_DIR
 RUN R --no-save -e "install.packages(c('flexdashboard', 'rmarkdown'))"
 ```
 
+### TMDB_API_KEY
+f18f986c449c9585986f07ecbd535291
+
 Project Organization (WIP)
 ------------
 
