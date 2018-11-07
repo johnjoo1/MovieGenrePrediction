@@ -17,7 +17,7 @@ Credits:
 Materials from this project was heavily borrowed, if not straight copied, from Spandan Madan. http://dx.doi.org/10.5281/zenodo.830003 
 Github: https://github.com/Spandan-Madan/DeepLearningProject
 
-Environment Dockerfile snippet:
+# Environment Dockerfile snippet (required for Domino 201)
 ```
 RUN pip install imdbpy wget tmdbsimple tensorflow gensim stop_words
 RUN pip install git+https://github.com/dominodatalab/python-domino.git
