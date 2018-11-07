@@ -17,6 +17,14 @@ Credits:
 Materials from this project was heavily borrowed, if not straight copied, from Spandan Madan. http://dx.doi.org/10.5281/zenodo.830003 
 Github: https://github.com/Spandan-Madan/DeepLearningProject
 
+Environment Dockerfile snippet:
+```
+RUN pip install imdbpy wget tmdbsimple tensorflow gensim stop_words
+RUN pip install git+https://github.com/dominodatalab/python-domino.git
+RUN echo 'if [ -z ${PYTHONPATH+x} ]; then export PYTHONPATH=${DOMINO_WORKING_DIR}; else export PYTHONPATH=${DOMINO_WORKING_DIR}:${PYTHONPATH}; fi' >> /home/ubuntu/.domino-defaults
+RUN R --no-save -e "install.packages(c('flexdashboard', 'rmarkdown'))"
+```
+
 Project Organization (WIP)
 ------------
 
