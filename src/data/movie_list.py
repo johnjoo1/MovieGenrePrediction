@@ -1,3 +1,4 @@
+import tmdbsimple as tmdb
 from src.utils.initialize import *
  
 # Get the text data from top 1000 popular movies ########
