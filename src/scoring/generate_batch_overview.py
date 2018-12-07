@@ -70,12 +70,20 @@ for i in range(len(movies)):
         
 print ("After removing duplicates we have ",len(no_duplicate_movies), " movies")
  
- 
-with open('data/interim/movie_list.pkl','wb') as f:
-    pickle.dump(top1000_movies,f)
-with open('data/interim/no_duplicate_movies.pkl', 'wb') as f:
-    pickle.dump(no_duplicate_movies, f)
-with open('data/interim/movies.pkl', 'wb') as f:
-    pickle.dump(movies, f)
+movies_with_overviews=[] # from poster data
+for i in range(len(no_duplicate_movies)):
+    movie=no_duplicate_movies[i]
+    id=movie['id']
+    overview=movie['overview']
     
-## TODO include a dominostats.json
+    if len(overview)==0:
+        continue
+    else:
+        movies_with_overviews.append(movie)
+        
+overviews = [x['overview'] for x in movies_with_overviews]
+
+for overview in overviews:
+    with open("batch_overviews.txt", "a+") as f:
+        f.write(overview)
+        f.write('\n')

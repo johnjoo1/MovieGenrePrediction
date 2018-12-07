@@ -3,7 +3,6 @@ import numpy as np
 from sklearn.preprocessing import MultiLabelBinarizer
 from src.utils.eval_metrics import *
 import os
-
 from sklearn.model_selection import train_test_split
 
 with open('data/processed/movies_with_overviews.pkl','rb') as f:
