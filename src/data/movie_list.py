@@ -9,7 +9,7 @@ all_movies=tmdb.Movies()
 top1000_movies=[]
 print('Pulling movie list, Please wait...')
 for i in range(1,51):
-    if i%15==0:
+    if i%10==0:
         time.sleep(7)
     movies_on_this_page=all_movies.popular(page=i)['results']
     top1000_movies.extend(movies_on_this_page)
@@ -38,7 +38,7 @@ for g_id in nr_ids:
     print('Pulling movies for genre ID '+str(g_id))
     baseyear -= 1
     for page in range(1,6,1): # (1,6,1)
-        time.sleep(0.5)
+        time.sleep(1)
     
         url = 'https://api.themoviedb.org/3/discover/movie?api_key=' + api_key
         url += '&language=en-US&sort_by=popularity.desc&year=' + str(baseyear) 
