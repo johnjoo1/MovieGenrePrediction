@@ -13,7 +13,7 @@ with open('data/processed/Genredict.pkl','rb') as f:
     Genre_ID_to_name=pickle.load(f)
     
 model_textual = load_model('models/overview_nn.h5')
-w2v_model = models.KeyedVectors.load_word2vec_format('data/external/GoogleNews-vectors-negative300.bin', binary=True)
+w2v_model = models.KeyedVectors.load_word2vec_format('data/external/GoogleNews-vectors-negative300-SLIM.bin', binary=True)
 tokenizer = RegexpTokenizer(r'\w+')
 en_stop = get_stop_words('en')
 with open('models/mlb.pkl','rb') as f:
