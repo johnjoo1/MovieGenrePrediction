@@ -10,7 +10,7 @@ with open('data/processed/movies_with_overviews.pkl','rb') as f:
 
 
 from gensim import models
-model2 = models.KeyedVectors.load_word2vec_format('data/external/GoogleNews-vectors-negative300.bin', binary=True)
+model2 = models.KeyedVectors.load_word2vec_format('data/external/GoogleNews-vectors-negative300-SLIM.bin', binary=True)
 
 
 from nltk.tokenize import RegexpTokenizer
@@ -71,4 +71,4 @@ with open('data/processed/textual_features.pkl','wb') as f:
 with open('models/mlb.pkl','wb') as f:
     pickle.dump(mlb,f)
 
-os.remove("data/external/GoogleNews-vectors-negative300.bin")
+os.remove("data/external/GoogleNews-vectors-negative300-SLIM.bin")
