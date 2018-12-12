@@ -11,6 +11,7 @@ print('Pulling movie list, Please wait...')
 for i in range(1,51):
     if i%10==0:
         time.sleep(7)
+        print(str(i)+'/51...')
     movies_on_this_page=all_movies.popular(page=i)['results']
     top1000_movies.extend(movies_on_this_page)
 len(top1000_movies)
