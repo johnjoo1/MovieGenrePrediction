@@ -25,7 +25,7 @@ with open(batch_file, "r") as f:
 df = pd.DataFrame.from_records(results)
 df.to_csv('results/batch_results.csv', index=False)                        
 
-os.remove("data/external/GoogleNews-vectors-negative300.bin")
+os.remove("data/external/GoogleNews-vectors-negative300-SLIM.bin")
 
         
 
