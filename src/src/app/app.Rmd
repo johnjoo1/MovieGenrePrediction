@@ -1,0 +1,65 @@
+---
+title: "Movie Genre Validator"
+runtime: shiny
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+---
+
+```{r global, include=FALSE}
+# load data in 'global' chunk so it can be shared by all users of the dashboard
+library(httr)
+library(jsonlite)
+
+url <- "https://trial-models.dominodatalab.com:443/models/5c118bdcc9e77c0008460894/latest/model"
+
+last_modified<-file.info(paste0(Sys.getenv("DOMINO_WORKING_DIR"),"/data/processed/movies_with_overviews.pkl"))$mtime
+```
+
+
+Row {data-height=20}
+-------------------------------------
+    
+Please use this app as a way to check your written overviews. The data used to create this app was updated `r last_modified`.
+
+
+
+   
+Row
+-------------------------------------
+    
+### Model Input
+    
+```{r}
+textAreaInput("overview_text", label = "Proposed Text for Movie Overview: ", value = "Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth.", width = '150%', height = '150px', resize = 'both')
+
+actionButton("goButton", "Go!")
+```
+    
+### Model Output
+
+```{r}
+
+genres_response <- eventReactive(input$goButton, {
+  POST(
+    url,
+   authenticate("model_api_key", "model_api_key", type = "basic"),
+    body=toJSON(list(data=list(input_string = input$overview_text)), auto_unbox = TRUE),
+    content_type("application/json")
+  )
+})
+
+
+renderTable({
+  list_of_lists <- content(genres_response())$result
+  df_response <- data.frame(do.call(cbind, list_of_lists))
+  colnames(df_response) <- c('Genres', 'Confidence Level')
+  df_response <- as.data.frame(lapply(df_response, unlist))
+  df_response_sorted <- df_response[order(-df_response[, 2]), ]
+  df_response_sorted
+})
+
+```
+
+
+
