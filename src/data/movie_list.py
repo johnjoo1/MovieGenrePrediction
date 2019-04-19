@@ -1,28 +1,33 @@
 from src.utils.initialize import *
+import pprint
  
 # Get the text data from top 1000 popular movies ########
 all_movies=tmdb.Movies()
 top_movies=all_movies.popular()
  
 # TODO parameterize by making top N movies
-all_movies=tmdb.Movies()
 top1000_movies=[]
-print('Pulling movie list, Please wait...')
+print('Pulling movie list of popular movies, Please wait...')
+print('\tWhile you wait, here are some sampling of the movies that are being pulled...')
 for i in range(1,51):
     if i%10==0:
+        print('\t' + str(i) + '/51 done')
+        print('\t******* Waiting a few seconds to stay within rate limits of TMDB... *******)')
         time.sleep(7)
-        print(str(i)+'/51...')
     movies_on_this_page=all_movies.popular(page=i)['results']
+    print('\t\t'+movies_on_this_page[-1]['title'])
     top1000_movies.extend(movies_on_this_page)
 len(top1000_movies)
  
-print('Done!')
+print('Done! Pulled a list of the top {n} movies.'.format(n = len(top1000_movies)))
+print('\n')
  
- 
+print('Extracting the genre ids associated with the movies....')
 genre_ids_ = list(map(lambda x: x['genre_ids'], top1000_movies))
 genre_ids_ = [item for sublist in genre_ids_ for item in sublist]
 nr_ids = list(set(genre_ids_))
- 
+print('Done! We have identified {n} genres in the top {m} most popular movies.'.format(n=len(nr_ids), m=len(top1000_movies)))
+print('\n')
  
 ##############################
 # Get poster data from another sample of movies from the genres listed in the top 1000 movies for a specific year #################
@@ -33,10 +38,10 @@ nr_ids = list(set(genre_ids_))
 movies = []
 baseyear = 2017
  
-print('Starting pulling movies from TMDB. This will take a while, please wait...')
+print('Starting pulling movies from TMDB from each genre. This will take a while, please wait...')
 done_ids=[]
 for g_id in nr_ids:
-    print('Pulling movies for genre ID '+str(g_id))
+    print('\tPulling movies for genre ID {g_id}. Here are sample of movies in the genre: '.format(g_id = str(g_id)) )
     baseyear -= 1
     for page in range(1,6,1): # (1,6,1)
         time.sleep(1)
@@ -49,14 +54,17 @@ for g_id in nr_ids:
  
         dataDict = json.loads(data)
         movies.extend(dataDict["results"])
+    last_movies = list(map(lambda x: x['title'],movies[-3:]))
+    for title in last_movies:
+        print('\t\t'+title)
     done_ids.append(str(g_id))
-print("Pulled movies for genres - "+','.join(done_ids))
+print("\tPulled movies for genres - "+','.join(done_ids))
+print('\n')
  
 # Remove duplicates
 movie_ids = [m['id'] for m in movies]
-print ("originally we had ",len(movie_ids)," movies")
+print ("Originally we had ",len(movie_ids)," movies")
 movie_ids=np.unique(movie_ids)
-print (len(movie_ids))
 seen_before=[]
 no_duplicate_movies=[]
 for i in range(len(movies)):
@@ -70,13 +78,29 @@ for i in range(len(movies)):
         no_duplicate_movies.append(movie)
         
 print ("After removing duplicates we have ",len(no_duplicate_movies), " movies")
+print('\n')
  
- 
-with open('data/interim/movie_list.pkl','wb') as f:
-    pickle.dump(top1000_movies,f)
+    
+# print("Saving the list of top 1000 movies (top1000_movies) as data/interim/movie_list.pkl...")
+# print('Here are the first 3 entries in top1000_movies:')
+# print(top1000_movies[:2])
+# with open('data/interim/movie_list.pkl','wb') as f:
+#     pickle.dump(top1000_movies,f)
+# print("Saved the list of top 1000 movies as data/interim/movie_list.pkl.")
+
+print("Saving the list of de-duped list of movies (no_duplicate_movies) as data/interim/no_duplicate_movies.pkl...")
+print('\tHere are the first 3 entries in no_duplicate_movies:')
+pprint.pprint(no_duplicate_movies[:3], indent=4)
 with open('data/interim/no_duplicate_movies.pkl', 'wb') as f:
     pickle.dump(no_duplicate_movies, f)
-with open('data/interim/movies.pkl', 'wb') as f:
-    pickle.dump(movies, f)
-    
+print("Saved the list of de-duped list of movies as data/interim/no_duplicate_movies.pkl.")    
+
+# print("Saving the list of movies pulled by genre (movies) as data/interim/movies.pkl...")
+# print('Here are the first 3 entries in movies:')
+# print(movies[:2])
+# with open('data/interim/movies.pkl', 'wb') as f:
+#     pickle.dump(movies, f)
+# print("Saved the list of movies pulled by genre (movies) as data/interim/movies.pkl.") 
+
+
 ## TODO include a dominostats.json

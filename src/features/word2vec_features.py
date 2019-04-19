@@ -5,13 +5,14 @@ from src.utils.eval_metrics import *
 import os
 from sklearn.model_selection import train_test_split
 
-with open('data/processed/movies_with_overviews.pkl','rb') as f:
+with open('data/interim/movies_with_overviews.pkl','rb') as f:
     final_movies_set=pickle.load(f)
+print("Loaded the list of de-duped movies with overviews from data/interim/movies_with_overviews.pkl.")
 
 
 from gensim import models
 model2 = models.KeyedVectors.load_word2vec_format('data/external/GoogleNews-vectors-negative300-SLIM.bin', binary=True)
-
+print("Loaded the GoogleNews Slimmed Word2Vec model.")
 
 from nltk.tokenize import RegexpTokenizer
 from stop_words import get_stop_words

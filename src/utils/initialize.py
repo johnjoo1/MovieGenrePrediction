@@ -25,7 +25,7 @@ search = tmdb.Search() #this instantiates a tmdb "search" object which allows yo
 # set here the path where you want the scraped folders to be saved!
 poster_folder='data/raw/posters/'
 if poster_folder.split('/')[0] in os.listdir('./'):
-    print('Folder already exists')
+    pass
 else:
     os.mkdir('./'+poster_folder)
 
