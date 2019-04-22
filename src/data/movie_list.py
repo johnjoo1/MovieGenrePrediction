@@ -79,14 +79,6 @@ for i in range(len(movies)):
         
 print ("After removing duplicates we have ",len(no_duplicate_movies), " movies")
 print('\n')
- 
-    
-# print("Saving the list of top 1000 movies (top1000_movies) as data/interim/movie_list.pkl...")
-# print('Here are the first 3 entries in top1000_movies:')
-# print(top1000_movies[:2])
-# with open('data/interim/movie_list.pkl','wb') as f:
-#     pickle.dump(top1000_movies,f)
-# print("Saved the list of top 1000 movies as data/interim/movie_list.pkl.")
 
 print("Saving the list of de-duped list of movies (no_duplicate_movies) as data/interim/no_duplicate_movies.pkl...")
 print('\tHere are the first 3 entries in no_duplicate_movies:')
@@ -95,12 +87,6 @@ with open('data/interim/no_duplicate_movies.pkl', 'wb') as f:
     pickle.dump(no_duplicate_movies, f)
 print("Saved the list of de-duped list of movies as data/interim/no_duplicate_movies.pkl.")    
 
-# print("Saving the list of movies pulled by genre (movies) as data/interim/movies.pkl...")
-# print('Here are the first 3 entries in movies:')
-# print(movies[:2])
-# with open('data/interim/movies.pkl', 'wb') as f:
-#     pickle.dump(movies, f)
-# print("Saved the list of movies pulled by genre (movies) as data/interim/movies.pkl.") 
 
 
 ## TODO include a dominostats.json

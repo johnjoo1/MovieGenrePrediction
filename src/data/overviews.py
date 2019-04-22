@@ -1,10 +1,6 @@
 from src.utils.initialize import *
 import pprint
 
-# build dataset 
-
-# cleaning
-
 # load no_duplicate_movies
 print("Loading the list of de-duped movies from data/interim/no_duplicate_movies.pkl...")
 with open('data/interim/no_duplicate_movies.pkl','rb') as f:

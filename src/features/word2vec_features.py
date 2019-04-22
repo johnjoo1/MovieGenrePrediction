@@ -39,8 +39,6 @@ for i in range(len(final_movies_set)):
     if len(stopped_tokens)==0:
         rows_to_delete.append(i)
         genres.pop(-1)
-#         print overview
-#         print "sample ",i,"had no nonstops"
     else:
         for tok in stopped_tokens:
             if tok.lower() in model2.vocab:
@@ -51,8 +49,6 @@ for i in range(len(final_movies_set)):
         else:
             rows_to_delete.append(i)
             genres.pop(-1)
-#             print overview
-#             print "sample ",i,"had no word2vec"
 
 mask2=[]
 for row in range(len(movie_mean_wordvec)):

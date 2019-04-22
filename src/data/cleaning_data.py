@@ -1,19 +1,6 @@
 from src.utils.initialize import *
 import pprint
 
-# make sure there are same number of distinct genres in movies_with_overviews
-
-# build dataset 
-
-# cleaning
-
-# load no_duplicate_movies
-# # print("Loading the list of de-duped movies from data/interim/no_duplicate_movies.pkl...")
-# with open('data/interim/no_duplicate_movies.pkl','rb') as f:
-#     no_duplicate_movies=pickle.load(f)
-# print("Loaded the list of de-duped movies from data/interim/no_duplicate_movies.pkl.")
-
-# print("Loading the list of movies that have overviews from data/interim/movies_with_overviews.pkl...")
 with open('data/interim/movies_with_overviews.pkl','rb') as f:
     movies_with_overviews=pickle.load(f)
 print("Loaded the list of movies that have overviews from data/interim/movies_with_overviews.pkl.\n")
@@ -60,21 +47,6 @@ for i in set(all_ids):
 print("Mapping from genre id to genre name is saved in the Genre_ID_to_name dictionary:")
 pprint.pprint(Genre_ID_to_name, indent=4)
 print('\n')
-
-# import re
-
-# # remove some punctuation. probably a much better way to do this
-# content=[]
-# for i in range(len(movies_with_overviews)):
-#     movie=movies_with_overviews[i]
-#     id=movie['id']
-#     overview=movie['overview']
-#     overview=overview.replace(',','')
-#     overview=overview.replace('.','')
-#     content.append(overview)
-
-
-
 import pickle
 
 # print('Saving the mapping from genre id to genre name as data/processed/Genredict.pkl...')
@@ -88,8 +60,3 @@ with open('data/processed/Y.pkl','wb') as f:
 print("Saved the target variable Y to data/processed/Y.pkl.\n")
 print('\tHere are the first few lines of Y:')
 print('\t'+str(Y[:5]))
-
-
-# with open('data/processed/movies_with_overviews.pkl','wb') as f:
-#     pickle.dump(movies_with_overviews,f)
-
