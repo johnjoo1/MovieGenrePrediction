@@ -59,7 +59,7 @@ with open('data/processed/X_tfidf.pkl','wb') as f:
 with open('models/tfidf_transformer.pkl','wb') as f:
     pickle.dump(tfidf_transformer,f)
 print("\tSaved X_tfidf to data/processed/X_tfidf.pkl and the vectorizer as models/tfidf_transformer.pkl.")
-print('\tHere are the first row of X_tfidf (remember that it is as sparse matrix:')
+print('\tHere are the first row of X_tfidf (remember that it is as sparse matrix):')
 print('\t {X}'.format(X=X_tfidf[0]))
 
 
