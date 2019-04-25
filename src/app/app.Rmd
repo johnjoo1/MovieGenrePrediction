@@ -43,7 +43,7 @@ actionButton("goButton", "Go!")
 genres_response <- eventReactive(input$goButton, {
   POST(
     url,
-   authenticate("model_api_key", "model_api_key", type = "basic"),
+#   authenticate("domino_api_token", "domino_api_token", type = "basic"),
     body=toJSON(list(data=list(input_string = input$overview_text)), auto_unbox = TRUE),
     content_type("application/json")
   )
@@ -60,6 +60,3 @@ renderTable({
 })
 
 ```
-
-
-
