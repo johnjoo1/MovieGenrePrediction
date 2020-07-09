@@ -51,7 +51,7 @@ print("Training done!\n")
 import matplotlib.pyplot as plt
 
 # Plot training & validation accuracy values
-plt.plot(history.history['acc'])
+plt.plot(history.history['accuracy'])
 plt.title('Model accuracy')
 plt.ylabel('Accuracy')
 plt.xlabel('Epoch')
